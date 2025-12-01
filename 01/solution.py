@@ -3,34 +3,21 @@ myin = [line.strip() for line in file.readlines()]
 file.close()
 
 
-def part_one():
-    max_cals = float('-inf')
-    cals = 0
+def both_parts():
+    dial = 50
+    c1, c2 = 0, 0
+
     for num in myin:
-        if num == "":
-            if cals > max_cals:
-                max_cals = cals
-            cals = 0
-        else:
-            cals += int(num)
+        x = int(num[1:]) * (1 if num[0] == "R" else -1)
+        dial += x
+        if dial < 0 or dial > 99:
+            c2 += abs(dial // 100)
+        dial %= 100
+        if dial == 0:
+            c1 += 1
 
-    print(max_cals)
-
-
-def part_two():
-    max_cals = [float('-inf'), float('-inf'), float('-inf')]
-    cals = 0
-    for num in myin:
-        if num == "":
-            if cals > max_cals[0]:
-                max_cals[0] = cals
-                max_cals.sort()
-            cals = 0
-        else:
-            cals += int(num)
-
-    print(sum(max_cals))
+    print(c1)
+    print(c2)
 
 
-part_one()
-part_two()
+both_parts()
