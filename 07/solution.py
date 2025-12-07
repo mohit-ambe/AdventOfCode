@@ -1,4 +1,3 @@
-import time
 from functools import cache
 
 file = open("input.txt", "r")
